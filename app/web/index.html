@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>musicA SaveIt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<!--APP-START-->
+<div id="app" class="app">
+  <div id="clipbar" class="clipbar" hidden></div>
+
+  <header class="topbar">
+    <button class="btn btn-icon btn-ghost" data-act="toggle-sidebar" aria-label="Auftragsliste ein- oder ausblenden" title="Auftragsliste">
+      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/></svg>
+    </button>
+    <label class="linkbox" id="linkbox">
+      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      <input id="link" type="url" placeholder="Link einfügen (Strg+V) oder hierher ziehen · Apple Music, Spotify, YouTube Music" autocomplete="off" spellcheck="false" aria-label="Link zu Titel, Album oder Playlist">
+      <span id="linkmeta" class="meta"></span>
+    </label>
+    <button class="btn" id="folderBtn" data-act="folder" title="Zielordner (Strg+O)">
+      <svg class="ico sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
+      <span class="path" id="folderPath"></span>
+      <svg class="ico sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+    <select class="ctl format" id="format" aria-label="Audioformat">
+      <option value="original">Original behalten</option>
+      <option value="mp3">MP3 320</option>
+      <option value="flac">FLAC</option>
+    </select>
+    <button class="btn btn-primary" id="saveBtn" data-act="submit">Sichern</button>
+    <button class="btn btn-ghost" id="moreBtn" data-act="more" aria-expanded="false" aria-controls="optsbar">Mehr</button>
+  </header>
+
+  <div id="optsbar" class="optsbar" hidden></div>
+
+  <aside class="sidebar">
+    <div class="brand"><span class="mark"></span><b>SaveIt</b><span>musicA</span></div>
+    <div class="side-title"><span>Aufträge</span></div>
+    <div class="joblist" id="joblist"></div>
+    <nav class="side-nav" id="sidenav">
+      <button data-view="jobs" class="is-active"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15V6"/><path d="M18.5 18a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/><path d="M12 12H3"/><path d="M16 6H3"/><path d="M12 18H3"/></svg>Aufträge</button>
+      <button data-view="history"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>Verlauf</button>
+      <button data-view="settings"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><line x1="21" x2="14" y1="4" y2="4"/><line x1="10" x2="3" y1="4" y2="4"/><line x1="21" x2="12" y1="12" y2="12"/><line x1="8" x2="3" y1="12" y2="12"/><line x1="21" x2="16" y1="20" y2="20"/><line x1="12" x2="3" y1="20" y2="20"/><line x1="14" x2="14" y1="2" y2="6"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="16" x2="16" y1="18" y2="22"/></svg>Einstellungen</button>
+    </nav>
+  </aside>
+
+  <main class="main" id="main"></main>
+  <aside class="panel" id="panel" hidden aria-label="Treffer prüfen"></aside>
+
+  <footer class="statusbar" id="statusbar">
+    <span class="txt" id="st-left"></span>
+    <span class="total" id="st-bar" hidden><i></i></span>
+    <span class="right" id="st-right"></span>
+  </footer>
+</div>
+<div id="backdrop" class="backdrop" hidden data-act="close-sidebar"></div>
+<div id="menu" class="menu" hidden role="menu"></div>
+<div id="toast" class="toast" hidden role="status"></div>
+<script src="app.js"></script>
+<!--APP-END-->
+</body>
+</html>
